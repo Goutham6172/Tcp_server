@@ -1,17 +1,13 @@
 # tcp_server.py
-import socket
-import struct
-import time
+import socket, struct, time
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('0.0.0.0', 5002))
-sock.listen(1)
-
-conn, addr = sock.accept()
-print(f"Client connected: {addr}")
+s = socket.socket()
+s.bind(("0.0.0.0", 5000))
+s.listen(1)
+conn, _ = s.accept()
 
 while True:
-    # Send 3 targets with (range, rel_azimuth)
-    for r, az in [(100.0, 0.0), (120.0, 45.0), (150.0, -30.0)]:
-        conn.sendall(struct.pack('ff', r, az))
+    ts = int(time.time() * 1000)
+    for r, az in [(100, 0), (120, 45), (140, -30)]:
+        conn.sendall(struct.pack('ffQ', r, az, ts))
     time.sleep(1)
