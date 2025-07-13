@@ -30,7 +30,6 @@
 #     conn.close()
 #     s.close()
 
-
 # tcp_many_targets_simulator.py
 import socket
 import struct
@@ -40,7 +39,7 @@ import random
 HOST = "0.0.0.0"
 PORT = 5002
 UPDATE_HZ = 30
-NUM_TARGETS = 30
+NUM_TARGETS = 10
 
 # Initialize random targets with range and azimuth, and drift values
 targets = []
